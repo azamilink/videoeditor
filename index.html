@@ -1,27 +1,681 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Linktree</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
-    </head>
-    <body>
-        <section>
-            <main>
-                <img src="img/fp.jpg" alt="" />
-                <h2>Wandy Azami</h2>
-                <a href="http://threads.net/azamilink"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="https://tiktok.com/@azamilink"><i class="fa-brands fa-tiktok"></i> Tiktok</a>
-                <a href="https://facebook.com/azamilink"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                <a href="https://youtube.com/@azamiwandi"><i class="fa-brands fa-youtube"></i> Youtube</a>
-            </main>
 
-            <footer><p>Made with ❤ by <a href="mailto:azamiwandi@gmail.com">Wandy Azami</p></a></footer>
-        </section>
-    </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rahman - Video Editor Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .play-button:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-gray-800">Alex Rahman</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-purple-600 transition-colors">Beranda</a>
+                    <a href="#about" class="text-gray-600 hover:text-purple-600 transition-colors">Tentang</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-purple-600 transition-colors">Portfolio</a>
+                    <a href="#skills" class="text-gray-600 hover:text-purple-600 transition-colors">Keahlian</a>
+                    <a href="#contact" class="text-gray-600 hover:text-purple-600 transition-colors">Kontak</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-600">Beranda</a>
+                <a href="#about" class="block py-2 text-gray-600">Tentang</a>
+                <a href="#portfolio" class="block py-2 text-gray-600">Portfolio</a>
+                <a href="#skills" class="block py-2 text-gray-600">Keahlian</a>
+                <a href="#contact" class="block py-2 text-gray-600">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">Video Editor</h1>
+                <p class="text-xl md:text-2xl mb-8 text-purple-100">Mengubah ide menjadi cerita visual yang menawan</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('portfolio')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors">
+                        Lihat Portfolio
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                        Hubungi Saya
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Tentang Saya</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Saya adalah video editor profesional dengan pengalaman 5+ tahun dalam industri kreatif</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl p-8 h-80 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🎬</div>
+                            <p class="text-gray-600">Video Editor Profesional</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Passion untuk Storytelling</h3>
+                    <p class="text-gray-600 mb-6">
+                        Dengan lebih dari 5 tahun pengalaman di industri video editing, saya telah bekerja dengan berbagai klien mulai dari startup hingga perusahaan besar. Keahlian saya meliputi editing video komersial, dokumenter, konten media sosial, dan video korporat.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600">150+</div>
+                            <div class="text-gray-600">Proyek Selesai</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-2xl font-bold text-blue-600">50+</div>
+                            <div class="text-gray-600">Klien Puas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Portfolio Terbaru</h2>
+                <p class="text-gray-600">Beberapa karya terbaik yang telah saya kerjakan</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-red-400 to-pink-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('commercial')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">2:30</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Video Komersial Brand Fashion</h3>
+                        <p class="text-gray-600 mb-4">Video promosi untuk brand fashion lokal dengan konsep modern dan elegan</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Commercial</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Fashion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-blue-400 to-cyan-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('corporate')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">5:45</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Video Korporat Perusahaan Tech</h3>
+                        <p class="text-gray-600 mb-4">Dokumentasi profil perusahaan teknologi dengan pendekatan storytelling yang menarik</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">Corporate</span>
+                            <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">Technology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-green-400 to-emerald-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('social')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">0:30</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Konten Media Sosial</h3>
+                        <p class="text-gray-600 mb-4">Series konten pendek untuk Instagram dan TikTok dengan engagement tinggi</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">Social Media</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">Short Form</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-purple-400 to-indigo-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('documentary')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">12:15</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dokumenter Budaya Lokal</h3>
+                        <p class="text-gray-600 mb-4">Film dokumenter tentang pelestarian budaya tradisional Indonesia</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Documentary</span>
+                            <span class="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">Culture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-orange-400 to-red-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('event')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">8:20</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Highlight Event Pernikahan</h3>
+                        <p class="text-gray-600 mb-4">Video cinematic untuk momen spesial pernikahan dengan sentuhan emosional</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-rose-100 text-rose-600 px-3 py-1 rounded-full text-sm">Wedding</span>
+                            <span class="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">Cinematic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="fade-in card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="video-thumbnail bg-gradient-to-br from-teal-400 to-blue-500 h-48 relative">
+                        <div class="play-button cursor-pointer" onclick="playVideo('tutorial')">
+                            <svg class="w-6 h-6 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="bg-black/50 px-2 py-1 rounded text-sm">15:30</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Video Tutorial Online Course</h3>
+                        <p class="text-gray-600 mb-4">Series video pembelajaran untuk platform edukasi online dengan animasi menarik</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-cyan-100 text-cyan-600 px-3 py-1 rounded-full text-sm">Education</span>
+                            <span class="bg-lime-100 text-lime-600 px-3 py-1 rounded-full text-sm">Animation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Keahlian & Tools</h2>
+                <p class="text-gray-600">Software dan teknologi yang saya kuasai</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-8">Software Editing</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Adobe Premiere Pro</span>
+                                <span class="text-gray-600">95%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full" style="width: 0%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Adobe After Effects</span>
+                                <span class="text-gray-600">90%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">DaVinci Resolve</span>
+                                <span class="text-gray-600">85%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Final Cut Pro</span>
+                                <span class="text-gray-600">80%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creative Skills -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-8">Keahlian Kreatif</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 bg-purple-50 rounded-xl">
+                            <div class="text-3xl mb-3">🎨</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Color Grading</h4>
+                            <p class="text-gray-600 text-sm">Koreksi dan grading warna profesional</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="text-3xl mb-3">🎵</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Audio Mixing</h4>
+                            <p class="text-gray-600 text-sm">Mixing dan mastering audio berkualitas</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-green-50 rounded-xl">
+                            <div class="text-3xl mb-3">✨</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Motion Graphics</h4>
+                            <p class="text-gray-600 text-sm">Animasi dan efek visual menarik</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-orange-50 rounded-xl">
+                            <div class="text-3xl mb-3">📖</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Storytelling</h4>
+                            <p class="text-gray-600 text-sm">Penyusunan narasi yang compelling</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Mari Berkolaborasi</h2>
+                <p class="text-gray-600">Siap untuk mewujudkan proyek video impian Anda?</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Hubungi Saya</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-purple-100 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Email</p>
+                                <p class="text-gray-600">alex.rahman@email.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Telepon</p>
+                                <p class="text-gray-600">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Lokasi</p>
+                                <p class="text-gray-600">Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-800 mb-4">Ikuti Saya</h4>
+                        <div class="flex space-x-4">
+                            <button onclick="openSocialMedia('instagram')" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-3 rounded-lg hover:shadow-lg transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.864 3.708 13.713 3.708 12.416s.49-2.448 1.418-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.928.875 1.418 2.026 1.418 3.323s-.49 2.448-1.418 3.275c-.875.807-2.026 1.297-3.323 1.297z"/>
+                                </svg>
+                            </button>
+                            <button onclick="openSocialMedia('youtube')" class="bg-red-600 text-white p-3 rounded-lg hover:shadow-lg transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </button>
+                            <button onclick="openSocialMedia('linkedin')" class="bg-blue-700 text-white p-3 rounded-lg hover:shadow-lg transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Kirim Pesan</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Masukkan nama Anda">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="nama@email.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Jenis Proyek</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                    <option>Pilih jenis proyek</option>
+                                    <option>Video Komersial</option>
+                                    <option>Video Korporat</option>
+                                    <option>Konten Media Sosial</option>
+                                    <option>Dokumenter</option>
+                                    <option>Video Pernikahan</option>
+                                    <option>Lainnya</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Pesan</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Ceritakan tentang proyek Anda..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-2">Alex Rahman</h3>
+                <p class="text-gray-400">Professional Video Editor</p>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">&copy; 2024 Alex Rahman. Semua hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-2xl w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-xl font-semibold text-gray-800">Video Preview</h3>
+                <button onclick="closeVideoModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="modal-content" class="text-center py-12">
+                <div class="text-6xl mb-4">🎬</div>
+                <p class="text-gray-600 mb-4">Video demo tidak tersedia dalam versi portfolio ini.</p>
+                <p class="text-sm text-gray-500">Dalam implementasi nyata, video akan diputar di sini.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add click handlers to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars when visible
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 500);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelector('#skills').addEventListener('DOMContentLoaded', function() {
+            skillObserver.observe(document.querySelector('#skills'));
+        });
+
+        // Initialize skill bar animation when skills section is visible
+        setTimeout(() => {
+            skillObserver.observe(document.querySelector('#skills'));
+        }, 100);
+
+        // Video modal functions
+        function playVideo(videoType) {
+            const modal = document.getElementById('video-modal');
+            const title = document.getElementById('modal-title');
+            
+            const videoTitles = {
+                'commercial': 'Video Komersial Brand Fashion',
+                'corporate': 'Video Korporat Perusahaan Tech',
+                'social': 'Konten Media Sosial',
+                'documentary': 'Dokumenter Budaya Lokal',
+                'event': 'Highlight Event Pernikahan',
+                'tutorial': 'Video Tutorial Online Course'
+            };
+            
+            title.textContent = videoTitles[videoType] || 'Video Preview';
+            modal.classList.remove('hidden');
+        }
+
+        function closeVideoModal() {
+            document.getElementById('video-modal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('video-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Social media functions
+        function openSocialMedia(platform) {
+            const urls = {
+                'instagram': 'https://instagram.com/alexrahman_editor',
+                'youtube': 'https://youtube.com/@alexrahmaneditor',
+                'linkedin': 'https://linkedin.com/in/alexrahman'
+            };
+            
+            // In a real implementation, these would open the actual social media profiles
+            alert(`Membuka profil ${platform.charAt(0).toUpperCase() + platform.slice(1)}...\nDalam implementasi nyata, ini akan membuka: ${urls[platform]}`);
+        }
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const project = this.querySelector('select').value;
+            const message = this.querySelector('textarea').value;
+            
+            if (name && email && message) {
+                alert('Terima kasih! Pesan Anda telah dikirim. Saya akan segera menghubungi Anda kembali.');
+                this.reset();
+            } else {
+                alert('Mohon lengkapi semua field yang diperlukan.');
+            }
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            // Add visible class to hero section immediately
+            document.querySelector('#home .fade-in').classList.add('visible');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97720e19f055f886',t:'MTc1NjUzMzQ5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
